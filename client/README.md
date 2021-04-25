@@ -1,4 +1,4 @@
-# nuxtDemo
+# client
 
 ## Build Setup
 

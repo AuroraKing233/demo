@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'nuxtDemo',
+    title: 'client',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -11,18 +11,18 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['element-ui/lib/theme-chalk/index.css'],
+  css: ['vuesax/dist/vuesax.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['@/plugins/element-ui'],
+  plugins: ['@/plugins/vuesax'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module',
+    // https://go.nuxtjs.dev/typescript
+    '@nuxt/typescript-build',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -34,9 +34,7 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    baseUrl: 'http://auroraone.top',
-  },
+  axios: {},
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -46,7 +44,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    transpile: [/^element-ui/],
-  },
+  build: {},
 }

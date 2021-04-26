@@ -1,137 +1,103 @@
 <template>
   <div class="container">
-    <div>
-      <header class="content-logos">
-        <logo />
-        <span class="plus">+</span>
-        <VuesaxLogo />
-      </header>
-      <h1 class="title">Nuxt.js + Vuesax</h1>
-      <h2 class="subtitle">
-        <a href="https://vuesax.com/">Vuesax</a> is a framework of ui components
-        for <a href="https://vuejs.org/">Vuejs</a>, It was created to make new
-        interfaces that have a new trend and are visually beautiful
-      </h2>
-      <div class="links">
-        <h3 class="h3">Vuesax</h3>
-        <a
-          href="https://vuesax.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://discordapp.com/invite/9dsKtvB"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          Discord
-        </a>
-        <a
-          href="https://github.com/lusaxweb/vuesax"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+    <a-carousel arrows dots-class="slick-dots slick-thumb" autoplay>
+      <!-- <a slot="customPaging" slot-scope="props">
+        <img :src="getImgUrl(props)" />
+      </a> -->
+      <div v-for="item in 4" :key="item">
+        <img
+          class="carouselImage"
+          :src="'http://g.auroraone.top/image/' + item + '.jpg'"
+        />
       </div>
-      <div class="links">
-        <h3 class="h3">Nuxt.js</h3>
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    </a-carousel>
+    <vs-row class="card">
+      <vs-col
+        v-for="(col, index) in 6"
+        :key="index"
+        vs-type="flex"
+        vs-justify="center"
+        vs-align="center"
+        w="4"
+      >
+        <vs-card>
+          <template #title>
+            <h3>Pot with a plant</h3>
+          </template>
+          <template #img>
+            <img
+              src="http://g.auroraone.top/image/000714-1619107634fc6c.jpg"
+              alt=""
+            />
+          </template>
+          <template #text>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+          </template>
+          <template #interactions>
+            <vs-button danger icon>
+              <i class="bx bx-heart"></i>
+            </vs-button>
+            <vs-button class="btn-chat" shadow primary>
+              <i class="bx bx-chat"></i>
+              <span class="span"> 54 </span>
+            </vs-button>
+          </template>
+        </vs-card>
+      </vs-col>
+    </vs-row>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuesaxLogo from '~/components/VuesaxLogo.vue'
-
 export default {
-  components: {
-    Logo,
-    VuesaxLogo,
+  data() {
+    return {
+      baseUrl: 'http://g.auroraone.top/image/',
+    }
+  },
+  methods: {
+    getImgUrl(page) {
+      return `${this.baseUrl}${++page.i}.jpg`
+    },
   },
 }
 </script>
 
-<style>
+<style scoped>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  padding: 0 200px;
 }
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+/* For demo */
+.ant-carousel >>> .slick-dots {
+  height: auto;
+}
+.ant-carousel >>> .slick-slide img {
+  border: 5px solid #fff;
   display: block;
-  font-weight: 300;
-  font-size: 55px;
-  color: #35495e;
-  letter-spacing: 1px;
-  text-transform: capitalize;
-  margin: 25px 0;
+  margin: auto;
+  max-width: 80%;
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 1.1rem;
-  color: #526488;
-  word-spacing: 2px;
-  padding-bottom: 15px;
-  max-width: 600px;
+.ant-carousel >>> .slick-thumb {
+  bottom: -45px;
 }
-
-.subtitle a {
-  font-weight: 500;
-  color: inherit;
+.ant-carousel >>> .slick-thumb li {
+  width: 60px;
+  height: 45px;
 }
-
-.links {
-  padding-top: 15px;
-  margin-bottom: 20px;
+.ant-carousel >>> .slick-thumb li img {
+  width: 100%;
+  height: 100%;
+  /* filter: grayscale(100%); */
 }
-
-.content-logos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 500px;
+.ant-carousel >>> .slick-thumb li.slick-active img {
+  filter: grayscale(0%);
 }
-
-.plus {
-  font-size: 2.5rem;
-  margin: 15px;
-  color: #35495e;
+.carouselImage {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
 }
-
-.h3 {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 400;
-  margin: 10px;
+.card {
+  margin-top: 50px;
 }
 </style>

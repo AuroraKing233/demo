@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <vs-navbar v-model="active" shadow square center-collapsed fixed>
       <template #left>
         <vs-button flat icon @click="activeSidebar = !activeSidebar">
@@ -151,9 +151,7 @@
         </vs-row>
       </template>
     </vs-sidebar>
-    <div class="page">
-      <Nuxt />
-    </div>
+    <Nuxt />
   </div>
 </template>
 <script>
@@ -215,5 +213,12 @@ html {
 }
 .page {
   padding-top: 44px;
+}
+#__nuxt,
+#__layout,
+#__layout:first-child,
+.page {
+  height: 100%;
+  width: 100%;
 }
 </style>

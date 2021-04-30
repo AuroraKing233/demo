@@ -45,60 +45,96 @@
           </vs-card>
         </div>
       </div>
+      <div class="column">
+        <div class="title">
+          <i class="bx bx-message-alt-detail icon"></i><span>视频</span>
+        </div>
+      </div>
+      <div class="card">
+        <div v-for="(col, index) in 6" :key="index" class="item">
+          <vs-card>
+            <template #title>
+              <h3>Pot with a plant</h3>
+            </template>
+            <template #img>
+              <img
+                src="http://g.auroraone.top/image/000714-1619107634fc6c.jpg"
+                alt=""
+              />
+            </template>
+            <template #text>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+            </template>
+            <template #interactions>
+              <vs-button danger icon>
+                <i class="bx bx-heart"></i>
+              </vs-button>
+              <vs-button class="btn-chat" shadow primary>
+                <i class="bx bx-chat"></i>
+                <span class="span"> 54 </span>
+              </vs-button>
+            </template>
+          </vs-card>
+        </div>
+      </div>
     </div>
-    <div class="info">
-      <vs-card>
-        <template #img>
-          <img
-            class="Avatar"
-            src="http://g.auroraone.top/image/name.png"
-            alt=""
-          />
-        </template>
-        <template #title>
-          <h3>萌二社</h3>
-        </template>
-        <template #text>
-          <p>美好的事情，即将发生</p>
-        </template>
-      </vs-card>
-      <vs-card v-for="i in 5" id="list" :key="i" type="3">
-        <template #title>
-          <h3 class="title">Pot with a plant</h3>
-        </template>
-        <template #img>
-          <img src="http://g.auroraone.top/image/3.jpg" class="image" alt="" />
-        </template>
-        <template #text>
-          <p class="text">文章{{ i }}</p>
-        </template>
-      </vs-card>
+    <div>
+      <div class="info">
+        <vs-card>
+          <template #img>
+            <img
+              class="Avatar"
+              src="http://g.auroraone.top/image/name.png"
+              alt=""
+            />
+          </template>
+          <template #title>
+            <h3>萌二社</h3>
+          </template>
+          <template #text>
+            <p>美好的事情，即将发生</p>
+          </template>
+        </vs-card>
+        <vs-card v-for="i in 5" id="list" :key="i" type="3">
+          <template #title>
+            <h3 class="title">Pot with a plant</h3>
+          </template>
+          <template #img>
+            <img
+              src="http://g.auroraone.top/image/3.jpg"
+              class="image"
+              alt=""
+            />
+          </template>
+          <template #text>
+            <p class="text">文章{{ i }}</p>
+          </template>
+        </vs-card>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+// import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
       baseUrl: 'http://g.auroraone.top/image/',
       swiperOption: {
         // 配置说明直接看官网
-        lazy: {
-          loadPrevNext: false,
-        },
-        lazyLoading: true,
         loop: true,
         spaceBetween: 30,
-        // autoplay: {
-        //   delay: 2500,
-        // },
+        autoplay: true,
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
         },
       },
     }
+  },
+  mounted() {
+    // console.log(this.$store.state.app)
   },
   methods: {
     onSwiper(swiper) {
@@ -141,6 +177,7 @@ export default {
       width: 100%;
       height: 300px;
       object-fit: contain;
+      border-radius: 20px;
     }
   }
 }

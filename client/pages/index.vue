@@ -19,27 +19,29 @@
         </div>
       </div>
       <div class="card">
-        <div v-for="(col, index) in 6" :key="index" class="item">
+        <div v-for="(item, index) in blogList" :key="index" class="item">
           <vs-card>
             <template #title>
-              <h3>Pot with a plant</h3>
+              <h3>{{ item.title }}</h3>
             </template>
             <template #img>
-              <img
-                src="http://g.auroraone.top/image/000714-1619107634fc6c.jpg"
-                alt=""
-              />
+              <img :src="item.baseUrl" />
             </template>
             <template #text>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+              <p>{{ item.summary }}</p>
             </template>
             <template #interactions>
-              <vs-button danger icon>
-                <i class="bx bx-heart"></i>
+              <vs-button danger icon @click="onLike(item)">
+                <i
+                  class="bx"
+                  :class="
+                    item.isLike ? 'bxs-heart scale-up-center' : 'bx-heart'
+                  "
+                ></i>
               </vs-button>
               <vs-button class="btn-chat" shadow primary>
                 <i class="bx bx-chat"></i>
-                <span class="span"> 54 </span>
+                <span class="span"> {{ item.likeSum }} </span>
               </vs-button>
             </template>
           </vs-card>
@@ -51,27 +53,29 @@
         </div>
       </div>
       <div class="card">
-        <div v-for="(col, index) in 6" :key="index" class="item">
+        <div v-for="(item, index) in blogList" :key="index" class="item">
           <vs-card>
             <template #title>
-              <h3>Pot with a plant</h3>
+              <h3>{{ item.title }}</h3>
             </template>
             <template #img>
-              <img
-                src="http://g.auroraone.top/image/000714-1619107634fc6c.jpg"
-                alt=""
-              />
+              <img :src="item.baseUrl" />
             </template>
             <template #text>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+              <p>{{ item.summary }}</p>
             </template>
             <template #interactions>
-              <vs-button danger icon>
-                <i class="bx bx-heart"></i>
+              <vs-button danger icon @click="onLike(item)">
+                <i
+                  class="bx"
+                  :class="
+                    item.isLike ? 'bxs-heart scale-up-center' : 'bx-heart'
+                  "
+                ></i>
               </vs-button>
               <vs-button class="btn-chat" shadow primary>
                 <i class="bx bx-chat"></i>
-                <span class="span"> 54 </span>
+                <span class="span"> {{ item.likeSum }} </span>
               </vs-button>
             </template>
           </vs-card>
@@ -131,17 +135,58 @@ export default {
           clickable: true,
         },
       },
+      blogList: [
+        {
+          title: 'Pot with a plant',
+          baseUrl: 'http://g.auroraone.top/image/1.jpg',
+          summary: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+          isLike: false,
+          likeSum: 233,
+        },
+        {
+          title: 'Pot with a plant',
+          baseUrl: 'http://g.auroraone.top/image/2.jpg',
+          summary: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+          isLike: false,
+          likeSum: 2233,
+        },
+        {
+          title: 'Pot with a plant',
+          baseUrl: 'http://g.auroraone.top/image/3.jpg',
+          summary: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+          isLike: false,
+          likeSum: 2333,
+        },
+        {
+          title: 'Pot with a plant',
+          baseUrl: 'http://g.auroraone.top/image/4.jpg',
+          summary: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+          isLike: false,
+          likeSum: 520,
+        },
+        {
+          title: 'Pot with a plant',
+          baseUrl: 'http://g.auroraone.top/image/2.jpg',
+          summary: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+          isLike: false,
+          likeSum: 250,
+        },
+        {
+          title: 'Pot with a plant',
+          baseUrl: 'http://g.auroraone.top/image/2.jpg',
+          summary: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+          isLike: false,
+          likeSum: 502,
+        },
+      ],
     }
   },
   mounted() {
     // console.log(this.$store.state.app)
   },
   methods: {
-    onSwiper(swiper) {
-      console.log(swiper)
-    },
-    onSlideChange() {
-      console.log('slide change')
+    onLike(value) {
+      value.isLike = !value.isLike
     },
   },
 }
@@ -151,19 +196,19 @@ export default {
 .carousel {
   width: 100%;
 }
+.iconColor {
+  color: #fff;
+}
 .container {
   position: relative;
   display: flex;
-  // height: 100%;
   width: 1000px;
   margin: 0 auto;
   .info {
     border-radius: 10px;
     position: sticky;
     top: 45px;
-    // left: 30px;
     flex: 1;
-    // background: #f5f5f5;
     .Avatar {
       width: 100%;
       height: 180px;
@@ -225,6 +270,11 @@ export default {
   .item {
     width: 220px;
     margin: 5px;
+  }
+  img {
+    width: 220px;
+    height: 155px;
+    object-fit: cover;
   }
 }
 // .ant-carousel {
